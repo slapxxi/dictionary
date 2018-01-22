@@ -1,4 +1,5 @@
 // @flow
 import List from './List';
+import Header from './Header';
 
-export { List };
+export { List, Header };
