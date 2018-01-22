@@ -2,13 +2,15 @@
 import React from 'react';
 import type { Element } from 'react';
 
-type Props = { data: Array<any>, renderItem: (any) => Element<any> };
+type Props = {
+  style?: Object,
+  data: Array<any>,
+  renderItem: (any) => Element<any>,
+};
 
-function List({ data, renderItem }: Props) {
+function List({ data, renderItem, style = {} }: Props) {
   return (
-    <ul>
-      <li>Item</li>
-    </ul>
+    <ul style={style}>{data.map((item) => renderItem(item))}</ul>
   );
 }
 
