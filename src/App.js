@@ -7,7 +7,7 @@ import Link from 'redux-first-router-link';
 import configureStore from './store/configureStore';
 import { openModal, closeModal } from './store/actions';
 import { Header, Modal, Route } from './components/';
-import { Profile, Search, PageNotFound } from './screens/';
+import { Profile, Search, PageNotFound, Home } from './screens/';
 
 type Props = {
   displayModal: boolean,
@@ -55,6 +55,9 @@ function App({ displayModal, openModal, closeModal }: Props) {
       </Modal>
       <Header onMenuClick={openModal} />
       <Content>
+        <Route to="/">
+          <Home />
+        </Route>
         <Route to="/profile">
           <Profile />
         </Route>
