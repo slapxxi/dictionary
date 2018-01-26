@@ -1,13 +1,15 @@
 // @flow
-import React, { Component, Children } from 'react';
+import React, { Component } from 'react';
 import glamorous from 'glamorous';
+import Link from 'redux-first-router-link';
 import anime from 'animejs';
 import Icon from 'react-icons/lib/fa/close';
+import SearchIcon from 'react-icons/lib/fa/search';
 import { colors } from '../lib/constants';
 
 type Props = {
   visible: boolean,
-  children: typeof Children,
+  children: any,
   onClose: () => void,
 };
 
@@ -44,11 +46,13 @@ class Modal extends Component<Props> {
       <Container
         ariaHidden={!this.props.visible}
         innerRef={this.setRef}
-        className="unique-name"
-        style={{ transform: 'translateY(-1000px)' }}
+        style={{ transform: 'translateY(-100%)' }}
       >
         <Header>
           <Icon onClick={this.props.onClose} size={20} />
+          <Link to="/search" href="/search">
+            <SearchIcon size={20} style={{ color: colors.white }} />
+          </Link>
         </Header>
         <Content>{this.props.children}</Content>
       </Container>
@@ -71,13 +75,14 @@ const Container = glamorous.div({
 });
 
 const Header = glamorous.header({
-  flexDirection: 'column',
   display: 'flex',
   alignItems: 'flex-start',
+  justifyContent: 'space-between',
 });
 
 const Content = glamorous.div({
   display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   flex: 1,
