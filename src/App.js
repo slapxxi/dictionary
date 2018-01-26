@@ -25,7 +25,10 @@ function App({ displayModal, openModal, closeModal }: Props) {
           style={{
             color: 'white',
             textDecoration: 'none',
-            padding: 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            fontSize: 20,
+            fontWeight: 500,
           }}
         >
           Home
@@ -36,7 +39,10 @@ function App({ displayModal, openModal, closeModal }: Props) {
           style={{
             color: 'white',
             textDecoration: 'none',
-            padding: 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            fontSize: 20,
+            fontWeight: 500,
           }}
         >
           Profile
@@ -47,7 +53,10 @@ function App({ displayModal, openModal, closeModal }: Props) {
           style={{
             color: 'white',
             textDecoration: 'none',
-            padding: 20,
+            paddingTop: 20,
+            paddingBottom: 20,
+            fontSize: 20,
+            fontWeight: 500,
           }}
         >
           Browse

@@ -3,7 +3,7 @@ const colors = {
   red: 'tomato',
   blue: '#17F',
   white: 'white',
-  black: 'black',
+  black: '#050510',
   darkgrey: '#414043',
   grey: '#919093',
   midgrey: '#C1C0C3',

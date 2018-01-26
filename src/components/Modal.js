@@ -83,8 +83,6 @@ const Header = glamorous.header({
 const Content = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
   flex: 1,
 });
 

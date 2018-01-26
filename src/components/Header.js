@@ -11,13 +11,9 @@ type Props = { onMenuClick: () => void };
 function Header({ onMenuClick }: Props) {
   return (
     <Container>
-      <MenuIcon
-        size={20}
-        fill={colors.midgrey}
-        onClick={onMenuClick}
-      />
+      <MenuIcon size={20} fill={colors.black} onClick={onMenuClick} />
       <Link to="/search" href="/search">
-        <SearchIcon size={20} fill={colors.midgrey} />
+        <SearchIcon size={20} fill={colors.black} />
       </Link>
     </Container>
   );
@@ -29,8 +25,6 @@ const Container = glamorous.header({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: 20,
-  borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
-  backgroundColor: colors.white,
 });
 
 const activeIconStyle = {
