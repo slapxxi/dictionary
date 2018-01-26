@@ -30,7 +30,7 @@ class Modal extends Component<Props> {
       document.querySelector('html').classList.remove('no-scroll');
       anime({
         targets: this.ref,
-        translateY: -1000,
+        translateY: '-100%',
         duration: 300,
         easing: 'easeInOutCubic',
       });
