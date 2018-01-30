@@ -15,7 +15,9 @@
     "redux": "^3.7.2",
     "redux-first-router": "0.0.16-next",
     "redux-first-router-link": "^1.4.2",
-    "redux-observable": "^0.17.0"
+    "redux-logger": "^3.0.6",
+    "redux-observable": "^0.17.0",
+    "redux-persist": "^5.5.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
@@ -41,15 +43,31 @@
       "jest": true
     },
     "rules": {
-      "react/jsx-filename-extension": [0],
-      "react/require-default-props": [0],
-      "react/prefer-stateless-function": [0],
-      "react/sort-comp": [0],
-      "arrow-parens": [0],
-      "no-shadow": [0],
-      "no-use-before-define": [0]
+      "react/jsx-filename-extension": [
+        0
+      ],
+      "react/require-default-props": [
+        0
+      ],
+      "react/prefer-stateless-function": [
+        0
+      ],
+      "react/sort-comp": [
+        0
+      ],
+      "arrow-parens": [
+        0
+      ],
+      "no-shadow": [
+        0
+      ],
+      "no-use-before-define": [
+        0
+      ]
     },
-    "plugins": ["jest"]
+    "plugins": [
+      "jest"
+    ]
   },
   "prettier": {
     "arrowParens": "always"

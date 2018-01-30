@@ -1,67 +1,28 @@
 // @flow
 import React from 'react';
 import { Provider, connect } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import glamorous from 'glamorous';
 import { NOT_FOUND } from 'redux-first-router';
-import Link from 'redux-first-router-link';
 import configureStore from './store/configureStore';
 import { openModal, closeModal } from './store/actions';
-import { Header, Modal, Route } from './components/';
-import { Profile, Search, PageNotFound, Home } from './screens/';
+import { Header, Route, Navigation } from './components/';
+import {
+  Profile,
+  Search,
+  PageNotFound,
+  Home,
+  Settings,
+} from './screens/';
 
 type Props = {
-  displayModal: boolean,
   openModal: () => void,
-  closeModal: () => void,
 };
 
-function App({ displayModal, openModal, closeModal }: Props) {
+function App({ openModal }: Props) {
   return (
     <Container>
-      <Modal visible={displayModal} onClose={closeModal}>
-        <Link
-          to="/"
-          href="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-            paddingTop: 20,
-            paddingBottom: 20,
-            fontSize: 20,
-            fontWeight: 500,
-          }}
-        >
-          Home
-        </Link>
-        <Link
-          to="/profile"
-          href="/profile"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-            paddingTop: 20,
-            paddingBottom: 20,
-            fontSize: 20,
-            fontWeight: 500,
-          }}
-        >
-          Profile
-        </Link>
-        <Link
-          to="/browse"
-          href="/browse"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-            paddingTop: 20,
-            paddingBottom: 20,
-            fontSize: 20,
-            fontWeight: 500,
-          }}
-        >
-          Browse
-        </Link>
-      </Modal>
+      <Navigation />
       <Header onMenuClick={openModal} />
       <Content>
         <Route to="/">
@@ -72,6 +33,9 @@ function App({ displayModal, openModal, closeModal }: Props) {
         </Route>
         <Route to="/search">
           <Search />
+        </Route>
+        <Route to="/settings">
+          <Settings />
         </Route>
         <Route to={NOT_FOUND}>
           <PageNotFound />
@@ -84,28 +48,28 @@ function App({ displayModal, openModal, closeModal }: Props) {
 const Container = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
-  flex: 1,
+  minHeight: '100vh',
 });
 
 const Content = glamorous.div({
-  padding: 20,
+  display: 'flex',
+  flex: 1,
 });
 
-const enhance = connect(
-  ({ modal, location }) => ({
-    location,
-    displayModal: modal.display,
-  }),
-  { openModal, closeModal },
-);
+const enhance = connect(() => ({}), { openModal, closeModal });
 
 const AppContainer = enhance(App);
 
 function Root() {
-  const store = configureStore();
+  const { store, persistor } = configureStore();
   return (
     <Provider store={store}>
-      <AppContainer />
+      <PersistGate
+        loading={<div>Loading...</div>}
+        persistor={persistor}
+      >
+        <AppContainer />
+      </PersistGate>
     </Provider>
   );
 }
