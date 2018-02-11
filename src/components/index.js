@@ -7,6 +7,7 @@ import Words from './Words';
 import WordList from './WordList';
 import Route from './Route';
 import Navigation from './Navigation';
+import Keyboard from './Keyboard';
 
 export {
   List,
@@ -17,4 +18,5 @@ export {
   Navigation,
   Words,
   WordList,
+  Keyboard,
 };
