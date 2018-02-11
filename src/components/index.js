@@ -8,6 +8,7 @@ import WordList from './WordList';
 import Route from './Route';
 import Navigation from './Navigation';
 import Keyboard from './Keyboard';
+import Slider from './Slider';
 
 export {
   List,
@@ -19,4 +20,5 @@ export {
   Words,
   WordList,
   Keyboard,
+  Slider,
 };

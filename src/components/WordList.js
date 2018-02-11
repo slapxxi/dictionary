@@ -2,6 +2,7 @@
 import { isEmpty } from 'lodash';
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
+import { Slider } from '.';
 import { theme } from '../lib/constants';
 import type { DictionaryEntry } from '../store/types';
 
@@ -55,15 +56,26 @@ class WordList extends Component<Props> {
   };
 
   render() {
-    if (isEmpty(this.props.words)) {
+    const { words, index } = this.props;
+    if (isEmpty(words)) {
       return null;
     }
     const entry = this.getEntry();
     return (
       <Container>
-        <Word id="word" learnt={entry.learnt}>
-          {entry.word}
-        </Word>
+        <Slider
+          data={words}
+          index={index}
+          renderSlide={({ item }) => (
+            <Slide>
+              <Transcription>/{item.transcription}/</Transcription>
+              <Word id="word" learnt={item.learnt}>
+                {item.word}
+              </Word>
+              <Definition>{item.definition}</Definition>
+            </Slide>
+          )}
+        />
         <Details>
           <Heading>Examples</Heading>
           {this.renderExamples(entry)}
@@ -120,6 +132,13 @@ const Thesaurus = glamorous.div({
   fontSize: 18,
 });
 
+const Slide = glamorous.div({
+  display: 'flex',
+  flex: '1 0 100%',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
 const Word = glamorous.h1(({ learnt }) => ({
   flex: 1,
   display: 'flex',
@@ -130,5 +149,26 @@ const Word = glamorous.h1(({ learnt }) => ({
   textShadow: '3px 3px rgba(0,0,0,0.3)',
   textDecoration: learnt ? 'line-through' : null,
 }));
+
+const Transcription = glamorous.div({
+  flex: 2,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 24,
+  fontWeight: 'lighter',
+  color: theme.subtext,
+});
+
+const Definition = glamorous.div({
+  maxWidth: '80%',
+  flex: 2,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  fontSize: 24,
+  textAlign: 'center',
+  color: theme.subtext,
+});
 
 export default WordList;
