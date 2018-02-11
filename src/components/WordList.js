@@ -1,4 +1,5 @@
 // @flow
+import { isEmpty } from 'lodash';
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import { theme } from '../lib/constants';
@@ -32,15 +33,11 @@ class WordList extends Component<Props> {
   };
 
   isOutOfRange = (props: Props) => {
-    if (this.isEmpty(props)) {
+    if (isEmpty(props.words)) {
       return false;
     }
     const { index = 0 } = props;
     return index > props.words.length - 1 || index < 0;
-  };
-
-  isEmpty = (props: Props) => {
-    return props.words.length === 0;
   };
 
   renderExamples = (entry: DictionaryEntry) => {
@@ -58,7 +55,7 @@ class WordList extends Component<Props> {
   };
 
   render() {
-    if (this.isEmpty(this.props)) {
+    if (isEmpty(this.props.words)) {
       return null;
     }
     const entry = this.getEntry();
