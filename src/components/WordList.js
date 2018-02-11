@@ -27,6 +27,10 @@ class WordList extends Component<Props, State> {
     }
   }
 
+  getEntry = () => {
+    return this.props.words[this.state.index];
+  };
+
   isOutOfRange = () => {
     if (this.isEmpty()) {
       return false;
@@ -39,16 +43,36 @@ class WordList extends Component<Props, State> {
     return this.props.words.length === 0;
   };
 
+  renderExamples = (entry: DictionaryEntry) => {
+    return (
+      <List>
+        {entry.examples.map((example) => (
+          <ListItem key={example}>&quot;{example}&quot;</ListItem>
+        ))}
+      </List>
+    );
+  };
+
+  renderThesaurus = (entry: DictionaryEntry) => {
+    return <Thesaurus>{entry.thesaurus.join(', ')}</Thesaurus>;
+  };
+
   render() {
     if (this.isEmpty()) {
       return null;
     }
-    const { words } = this.props;
-    const { index } = this.state;
-    const entry = words[index];
+    const entry = this.getEntry();
     return (
       <Container>
-        <Word learnt={entry.learnt}>{entry.word}</Word>
+        <Word id="word" learnt={entry.learnt}>
+          {entry.word}
+        </Word>
+        <Details>
+          <Heading>Examples</Heading>
+          {this.renderExamples(entry)}
+          <Heading>Thesaurus</Heading>
+          {this.renderThesaurus(entry)}
+        </Details>
       </Container>
     );
   }
@@ -60,6 +84,42 @@ const Container = glamorous.div({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+});
+
+const Details = glamorous.div({
+  position: 'absolute',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexDirection: 'column',
+  top: '100%',
+  left: 0,
+  right: 0,
+  color: theme.text,
+});
+
+const Heading = glamorous.h1({
+  marginTop: 32,
+  marginBottom: 32,
+  fontWeight: 'lighter',
+  fontFamily: 'serif',
+  fontStyle: 'italic',
+  color: theme.subtext,
+});
+
+const List = glamorous.ul({
+  marginTop: 20,
+  listStyle: 'circle',
+});
+
+const ListItem = glamorous.li({
+  padding: 10,
+  fontSize: 18,
+  fontStyle: 'italic',
+});
+
+const Thesaurus = glamorous.div({
+  fontSize: 18,
 });
 
 const Word = glamorous.h1(({ learnt }) => ({
