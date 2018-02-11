@@ -1,9 +1,10 @@
 // @flow
 import React from 'react';
-import { connect, Provider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import glamorous from 'glamorous';
-import { Header, WordList } from './components';
+import { Header } from './components';
+import { Words } from './containers';
 import configureStore from './store/configureStore';
 import { theme } from './lib/constants';
 
@@ -15,10 +16,6 @@ function App() {
     </Container>
   );
 }
-
-const Words = connect(({ dictionary }) => ({
-  words: dictionary.entries,
-}))(WordList);
 
 const Container = glamorous.div({
   overflow: 'hidden',
