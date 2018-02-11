@@ -41,5 +41,8 @@ describe('given index prop', () => {
     expect(() => {
       shallow(<WordList words={words} index={3} />);
     }).toThrow('Words contain 2 items but provided index 3');
+    expect(() => {
+      shallow(<WordList words={words} index={-1} />);
+    }).toThrow('Words contain 2 items but provided index -1');
   });
 });

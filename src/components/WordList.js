@@ -36,7 +36,7 @@ class WordList extends Component<Props, State> {
       return false;
     }
     const { index = 0 } = this.props;
-    return index > this.props.words.length - 1;
+    return index > this.props.words.length - 1 || index < 0;
   };
 
   isEmpty = () => {
