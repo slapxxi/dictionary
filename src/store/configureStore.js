@@ -9,7 +9,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
-import { modalReducer } from './reducers';
+import { modalReducer, dictionaryReducer } from './reducers';
 
 function configureStore() {
   const history = createHistory();
@@ -17,12 +17,13 @@ function configureStore() {
     HOME_ROUTE: '/',
     PROFILE_ROUTE: '/profile',
     SEARCH_ROUTE: '/search',
+    MODE_ROUTE: '/random',
     SETTINGS_ROUTE: '/settings',
   };
   const persistConfig = {
     storage,
     key: 'root',
-    blacklist: ['location'],
+    blacklist: ['location', 'dictionary'],
   };
   const {
     reducer: locationReducer,
@@ -31,6 +32,7 @@ function configureStore() {
   } = connectRoutes(history, routesMap);
   const rootReducer = combineReducers({
     modal: modalReducer,
+    dictionary: dictionaryReducer,
     location: locationReducer,
   });
   const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -2,44 +2,80 @@
 import React from 'react';
 import glamorous from 'glamorous';
 import { NavLink } from 'redux-first-router-link';
-import FaSearch from 'react-icons/lib/fa/search';
-import FaBars from 'react-icons/lib/fa/bars';
-import { theme } from '../lib/constants';
+import Search from 'react-icons/lib/fa/search';
+import Flask from 'react-icons/lib/fa/flask';
+import Random from 'react-icons/lib/fa/random';
+import { colors, theme } from '../lib/constants';
 
-type Props = { onMenuClick: () => void };
-
-function Header({ onMenuClick }: Props) {
+function Header() {
   return (
     <Container>
-      <MenuIcon size={20} fill={theme.link} onClick={onMenuClick} />
-      <NavLink
+      <Link
         to="/search"
         href="/search"
-        style={{ color: theme.link }}
-        activeStyle={{ color: theme.activeLink }}
+        activeStyle={{ color: theme.activelink }}
       >
         <SearchIcon size={20} />
-      </NavLink>
+      </Link>
+      <Link
+        to="/random"
+        href="/random"
+        activeStyle={{ color: theme.activelink }}
+      >
+        <Random size={20} />
+      </Link>
+      <Link
+        to="/new"
+        href="/new"
+        activeStyle={{ color: theme.activelink }}
+      >
+        <Flask size={20} />
+        <Badge>8</Badge>
+      </Link>
     </Container>
   );
 }
 
-const Container = glamorous.header({
+const Link = glamorous(NavLink)({
+  position: 'relative',
+  padding: 10,
+  color: colors.grey,
+});
+
+const Badge = glamorous.div({
+  boxSizing: 'border-box',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
+  backgroundColor: 'tomato',
+  position: 'absolute',
+  borderRadius: '50%',
+  verticalAlign: 'middle',
+  padding: 2,
+  minWidth: 20,
+  minHeight: 20,
+  fontSize: 12,
+  bottom: '100%',
+  left: '100%',
+  marginLeft: -15,
+  marginBottom: -15,
+  color: colors.white,
+});
+
+const Container = glamorous.header({
+  boxSizing: 'border-box',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'flex-end',
   padding: 20,
-  backgroundColor: theme.bg,
 });
 
 const activeIconStyle = {
   ':active': {
-    fill: theme.activeLink,
+    fill: theme.activelink,
   },
 };
 
-const MenuIcon = glamorous(FaBars)(activeIconStyle);
-
-const SearchIcon = glamorous(FaSearch)(activeIconStyle);
+const SearchIcon = glamorous(Search)(activeIconStyle);
 
 export default Header;

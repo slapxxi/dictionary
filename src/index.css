@@ -1,3 +1,8 @@
+html,
+body {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -32,4 +37,15 @@ html.no-scroll body {
   left: 0;
   overflow: hidden !important;
   height: 100%;
+}
+
+#root {
+  display: flex;
+  height: 100%;
+}
+
+::selection {
+  background-color: tomato;
+  opacity: 1;
+  color: white;
 }

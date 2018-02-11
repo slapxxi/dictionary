@@ -1,3 +1,4 @@
 import { openModal, closeModal } from './modal/actions';
+import { learn } from './dictionary/actions';
 
-export { openModal, closeModal };
+export { openModal, closeModal, learn };
