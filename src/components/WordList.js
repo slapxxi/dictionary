@@ -4,43 +4,43 @@ import glamorous from 'glamorous';
 import { theme } from '../lib/constants';
 import type { DictionaryEntry } from '../store/types';
 
-type State = { index: number };
-
 type Props = { words: Array<DictionaryEntry>, index?: number };
 
-class WordList extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    const { index = 0 } = props;
-    this.state = { index };
+class WordList extends Component<Props> {
+  componentWillMount() {
+    this.checkErrors(this.props);
   }
 
-  componentWillMount() {
-    if (this.isOutOfRange()) {
-      const { words } = this.props;
-      const { index } = this.state;
+  componentWillReceiveProps(props: Props) {
+    this.checkErrors(props);
+  }
+
+  checkErrors = (props: Props) => {
+    const { index = 0 } = props;
+    if (this.isOutOfRange(props)) {
       throw new Error(
         `Words contain ${
-          words.length
+          props.words.length
         } items but provided index ${index}`,
       );
     }
-  }
+  };
 
   getEntry = () => {
-    return this.props.words[this.state.index];
+    const { index = 0 } = this.props;
+    return this.props.words[index];
   };
 
-  isOutOfRange = () => {
-    if (this.isEmpty()) {
+  isOutOfRange = (props: Props) => {
+    if (this.isEmpty(props)) {
       return false;
     }
-    const { index = 0 } = this.props;
-    return index > this.props.words.length - 1 || index < 0;
+    const { index = 0 } = props;
+    return index > props.words.length - 1 || index < 0;
   };
 
-  isEmpty = () => {
-    return this.props.words.length === 0;
+  isEmpty = (props: Props) => {
+    return props.words.length === 0;
   };
 
   renderExamples = (entry: DictionaryEntry) => {
@@ -58,7 +58,7 @@ class WordList extends Component<Props, State> {
   };
 
   render() {
-    if (this.isEmpty()) {
+    if (this.isEmpty(this.props)) {
       return null;
     }
     const entry = this.getEntry();
@@ -79,6 +79,7 @@ class WordList extends Component<Props, State> {
 }
 
 const Container = glamorous.div({
+  position: 'relative',
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
