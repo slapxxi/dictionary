@@ -56,7 +56,7 @@ class WordList extends Component<Props> {
   };
 
   render() {
-    const { words, index } = this.props;
+    const { words, index = 0 } = this.props;
     if (isEmpty(words)) {
       return null;
     }
@@ -66,10 +66,10 @@ class WordList extends Component<Props> {
         <Slider
           data={words}
           index={index}
-          renderSlide={({ item }) => (
-            <Slide>
+          renderSlide={({ item, style, index }) => (
+            <Slide style={style}>
               <Transcription>/{item.transcription}/</Transcription>
-              <Word id="word" learnt={item.learnt}>
+              <Word id={`word_${index}`} learnt={item.learnt}>
                 {item.word}
               </Word>
               <Definition>{item.definition}</Definition>

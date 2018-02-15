@@ -8,10 +8,13 @@ it('renders slides', () => {
   const component = mount(
     <Slider
       data={slides}
-      renderSlide={({ item }) => <div id="item">{item.text}</div>}
+      index={0}
+      renderSlide={({ item }) => (
+        <div id={item.text}>{item.text}</div>
+      )}
     />,
   );
-  expect(component.find('#item').length).toEqual(1);
+  expect(component.find('#test').length).toEqual(1);
 });
 
 it('renders nothing if data is empty', () => {

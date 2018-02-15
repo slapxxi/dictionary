@@ -3,8 +3,8 @@ import { shallow, mount } from 'enzyme';
 import WordList from './WordList';
 
 const words = [
-  { word: 'active', examples: [], thesaurus: [] },
-  { word: 'passive', examples: [], thesaurus: [] },
+  { word: 'active', examples: [], thesaurus: [], transcription: '' },
+  { word: 'passive', examples: [], thesaurus: [], transcription: '' },
 ];
 
 describe('given words prop', () => {
@@ -15,12 +15,12 @@ describe('given words prop', () => {
   });
 
   it('renders word', () => {
-    const activeWord = component.find('h1#word');
+    const activeWord = component.find('h1#word_0');
     expect(activeWord.text()).toEqual('active');
   });
 
   it('renders nothing when empty', () => {
-    const component = shallow(<WordList words={[]} />);
+    const component = mount(<WordList words={[]} />);
     expect(component.html()).toBeNull();
   });
 });
@@ -28,7 +28,7 @@ describe('given words prop', () => {
 describe('given index prop', () => {
   it('starts with the specified index', () => {
     const component = mount(<WordList words={words} index={1} />);
-    const activeWord = component.find('h1#word');
+    const activeWord = component.find('h1#word_1');
     expect(activeWord.text()).toEqual('passive');
     expect(component.prop('index')).toEqual(1);
   });

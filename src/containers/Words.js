@@ -10,6 +10,8 @@ type Props = { words: Array<DictionaryEntry> };
 type State = { index: number };
 
 class Words extends Component<Props, State> {
+  debounce = false;
+
   state = { index: 0 };
 
   handlePress = ({ key }) => {
@@ -22,21 +24,33 @@ class Words extends Component<Props, State> {
   };
 
   nextWord = () => {
+    if (this.debounce) {
+      return;
+    }
     const nextIndex = this.state.index + 1;
     if (this.inRange(nextIndex)) {
-      this.setState({ index: nextIndex });
+      this.debounce = true;
+      this.setState({ index: nextIndex }, () =>
+        setTimeout(() => (this.debounce = false), 800),
+      );
     }
   };
 
   prevWord = () => {
+    if (this.debounce) {
+      return;
+    }
     const nextIndex = this.state.index - 1;
     if (this.inRange(nextIndex)) {
-      this.setState({ index: nextIndex });
+      this.debounce = true;
+      this.setState({ index: nextIndex }, () =>
+        setTimeout(() => (this.debounce = false), 800),
+      );
     }
   };
 
   inRange = (index) => {
-    return inRange(index, 0, this.props.words.length - 1);
+    return inRange(index, 0, this.props.words.length);
   };
 
   render() {
