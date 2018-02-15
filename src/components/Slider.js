@@ -41,6 +41,9 @@ class Slider extends Component<Props, State> {
   componentWillReceiveProps(props: Props) {
     let animation;
     const direction = this.getDirection(props);
+    if (direction === 'stale') {
+      return;
+    }
     if (direction === 'next') {
       animation = {
         from: { x: 0, prevX: -200, nextX: -100, show: 0 },
