@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import glamorous from 'glamorous';
-import { Header } from './components';
+import { Header, Route } from './components';
 import { Words } from './containers';
 import configureStore from './store/configureStore';
 import { theme } from './lib/constants';
@@ -11,8 +11,10 @@ import { theme } from './lib/constants';
 function App() {
   return (
     <Container>
-      <Header />
-      <Words />
+      <Header iconSize={20} />
+      <Route to="/">
+        <Words />
+      </Route>
     </Container>
   );
 }

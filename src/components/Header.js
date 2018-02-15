@@ -3,11 +3,12 @@ import React from 'react';
 import glamorous from 'glamorous';
 import { NavLink } from 'redux-first-router-link';
 import Search from 'react-icons/lib/fa/search';
-import Flask from 'react-icons/lib/fa/flask';
-import Random from 'react-icons/lib/fa/random';
+import ListIcon from 'react-icons/lib/fa/list-ul';
 import { colors, theme } from '../lib/constants';
 
-function Header() {
+type Props = { iconSize?: number };
+
+function Header({ iconSize = 20 }: Props) {
   return (
     <Container>
       <Link
@@ -15,21 +16,15 @@ function Header() {
         href="/search"
         activeStyle={{ color: theme.activelink }}
       >
-        <SearchIcon size={20} />
+        <SearchIcon size={iconSize} />
       </Link>
       <Link
-        to="/random"
-        href="/random"
+        to="/"
+        href="/"
         activeStyle={{ color: theme.activelink }}
+        exact
       >
-        <Random size={20} />
-      </Link>
-      <Link
-        to="/new"
-        href="/new"
-        activeStyle={{ color: theme.activelink }}
-      >
-        <Flask size={20} />
+        <ListIcon size={iconSize} />
         <Badge>8</Badge>
       </Link>
     </Container>
