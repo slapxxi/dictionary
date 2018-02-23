@@ -99,8 +99,9 @@ class Slider extends Component<Props, State> {
   };
 
   render() {
+    const { index } = this.state;
     const { item, nextItem, prevItem } = this.getItems(this.props);
-    const { data, renderSlide, index = 0 } = this.props;
+    const { data, renderSlide } = this.props;
     if (isEmpty(data)) {
       return null;
     }
@@ -113,7 +114,7 @@ class Slider extends Component<Props, State> {
               item: prevItem,
               style: this.state.prevStyle,
             })
-          : renderSlide({ item })}
+          : renderSlide({ item: {} })}
         {nextItem &&
           renderSlide({
             index: index + 1,
