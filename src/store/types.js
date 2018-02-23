@@ -2,6 +2,7 @@
 
 export type Dictionary = {
   +mode: Mode,
+  +index: ID,
   +entries: Array<DictionaryEntry>,
 };
 
@@ -25,6 +26,7 @@ export type Transcription = string;
 
 export type Action =
   | { type: 'LEARN', payload: ID }
+  | { type: 'CHANGE_INDEX', payload: ID }
   | { type: 'ADD_ENTRY', payload: DictionaryEntry };
 
 export type ID = number;

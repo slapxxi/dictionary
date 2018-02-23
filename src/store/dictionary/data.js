@@ -3,6 +3,7 @@ import { capitalize } from 'lodash';
 import type { Dictionary } from '../types';
 
 const data: Dictionary = {
+  index: 0,
   mode: 'default',
   entries: createEntries([
     'abdominal; ˌabˈdämən(ə)l; relating to the abdomen; Abdominal pain.; gastric, intestinal',

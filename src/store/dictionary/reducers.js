@@ -5,8 +5,6 @@ import type { Dictionary, Action } from '../types';
 
 function reducer(state: Dictionary = data, action: Action) {
   switch (action.type) {
-    case 'MODE_ROUTE':
-      return { ...state, mode: 'random' };
     case 'ADD_ENTRY':
       return {
         ...state,
@@ -17,6 +15,8 @@ function reducer(state: Dictionary = data, action: Action) {
         ...state,
         entries: learn(state.entries, action.payload),
       };
+    case 'CHANGE_INDEX':
+      return { ...state, index: action.payload };
     default:
       return isRouteAction(action)
         ? { ...state, mode: 'default' }

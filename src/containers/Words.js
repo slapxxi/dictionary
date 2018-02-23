@@ -1,23 +1,24 @@
 // @flow
-import { inRange, random } from 'lodash';
+import { inRange } from 'lodash';
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { WordList, Keyboard } from '../components';
-import { learn } from '../store/actions';
+import { learn, changeIndex } from '../store/actions';
 import type { Action, DictionaryEntry } from '../store/types';
 
 type Props = {
+  index: number,
   words: Array<DictionaryEntry>,
   learn: (index: number) => Action,
+  onChangeIndex: (index: number) => void,
 };
 
-type State = { index: number, expanded: boolean };
+type State = { expanded: boolean };
 
 class Words extends Component<Props, State> {
   debounce = false;
 
   state = {
-    index: random(0, this.props.words.length - 1),
     expanded: false,
   };
 
@@ -47,12 +48,11 @@ class Words extends Component<Props, State> {
     if (this.debounce) {
       return;
     }
-    const nextIndex = this.state.index + 1;
+    const nextIndex = this.props.index + 1;
     if (this.inRange(nextIndex)) {
       this.debounce = true;
-      this.setState({ index: nextIndex }, () =>
-        setTimeout(() => (this.debounce = false), 500),
-      );
+      this.props.onChangeIndex(nextIndex);
+      setTimeout(() => (this.debounce = false), 500);
     }
   };
 
@@ -63,12 +63,11 @@ class Words extends Component<Props, State> {
     if (this.debounce) {
       return;
     }
-    const nextIndex = this.state.index - 1;
+    const nextIndex = this.props.index - 1;
     if (this.inRange(nextIndex)) {
       this.debounce = true;
-      this.setState({ index: nextIndex }, () =>
-        setTimeout(() => (this.debounce = false), 500),
-      );
+      this.props.onChangeIndex(nextIndex);
+      setTimeout(() => (this.debounce = false), 500);
     }
   };
 
@@ -84,7 +83,7 @@ class Words extends Component<Props, State> {
     }
   };
 
-  inRange = (index) => {
+  inRange = (index: number) => {
     return inRange(index, 0, this.props.words.length);
   };
 
@@ -94,7 +93,7 @@ class Words extends Component<Props, State> {
         <Keyboard onPress={this.handlePress} />
         <WordList
           words={this.props.words}
-          index={this.state.index}
+          index={this.props.index}
           expand={this.state.expanded}
           onToggle={this.handleToggle}
         />
@@ -106,8 +105,11 @@ class Words extends Component<Props, State> {
 const enhance = connect(
   ({ dictionary }) => ({
     words: dictionary.entries,
+    index: dictionary.index,
   }),
-  { learn },
+  { learn, onChangeIndex: changeIndex },
 );
+
+export { Words };
 
 export default enhance(Words);
