@@ -1,3 +1,4 @@
 import Words from './Words';
+import SearchContainer from './SearchContainer';
 
-export { Words };
+export { Words, SearchContainer };

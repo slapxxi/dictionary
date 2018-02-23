@@ -9,7 +9,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 import createHistory from 'history/createBrowserHistory';
-import { modalReducer, dictionaryReducer } from './reducers';
+import {
+  modalReducer,
+  dictionaryReducer,
+  searchReducer,
+} from './reducers';
 
 function configureStore() {
   const history = createHistory();
@@ -34,6 +38,7 @@ function configureStore() {
     modal: modalReducer,
     dictionary: dictionaryReducer,
     location: locationReducer,
+    search: searchReducer,
   });
   const persistedReducer = persistReducer(persistConfig, rootReducer);
   const middlewares = applyMiddleware(middleware, logger);

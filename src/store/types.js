@@ -24,9 +24,14 @@ export type Mode = 'default' | 'random';
 
 export type Transcription = string;
 
+export type SearchState = { query: Query };
+
 export type Action =
   | { type: 'LEARN', payload: ID }
+  | { type: 'SEARCH', payload: Query }
   | { type: 'CHANGE_INDEX', payload: ID }
   | { type: 'ADD_ENTRY', payload: DictionaryEntry };
+
+export type Query = string;
 
 export type ID = number;

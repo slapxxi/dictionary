@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import glamorous from 'glamorous';
 import { Header, Route } from './components';
-import { Words } from './containers';
+import { Words, SearchContainer } from './containers';
 import configureStore from './store/configureStore';
 import { theme } from './lib/constants';
 
@@ -14,6 +14,9 @@ function App() {
       <Header iconSize={20} />
       <Route to="/">
         <Words />
+      </Route>
+      <Route to="/search">
+        <SearchContainer />
       </Route>
     </Container>
   );
