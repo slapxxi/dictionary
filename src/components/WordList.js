@@ -2,20 +2,74 @@
 import { isEmpty } from 'lodash';
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
-import { Slider } from '.';
+import { tween } from 'popmotion';
+import { Slider, Keyboard } from '.';
+import { pop } from '../lib/animations';
 import { theme } from '../lib/constants';
 import type { DictionaryEntry } from '../store/types';
 
-type Props = { words: Array<DictionaryEntry>, index?: number };
+type Props = {
+  words: Array<DictionaryEntry>,
+  expand?: boolean,
+  index?: number,
+  onToggle: (index: number) => void,
+};
 
-class WordList extends Component<Props> {
+type State = {
+  animatedContainer: number,
+  animatedWord: number,
+};
+
+class WordList extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    const { expand = false } = props;
+    const animatedContainer = expand ? -100 : 0;
+    this.state = {
+      animatedWord: 1,
+      animatedContainer,
+    };
+  }
+
   componentWillMount() {
     this.checkErrors(this.props);
   }
 
   componentWillReceiveProps(props: Props) {
     this.checkErrors(props);
+    this.animate(props);
   }
+
+  animate = ({ expand }: Props) => {
+    const to = expand ? -100 : 0;
+    tween({
+      from: this.state.animatedContainer,
+      to,
+    }).start({
+      update: (value) => {
+        this.setState({ animatedContainer: value });
+      },
+    });
+  };
+
+  handlePress = ({ key }: KeyboardEvent) => {
+    if (key === ' ') {
+      this.handleClick();
+    }
+  };
+
+  handleClick = () => {
+    if (this.props.expand) {
+      return;
+    }
+    pop({ to: 1.4 }).start({
+      update: ({ scale }) => {
+        this.setState({ animatedWord: scale });
+      },
+    });
+    const { index = 0 } = this.props;
+    this.props.onToggle(index);
+  };
 
   checkErrors = (props: Props) => {
     const { index = 0 } = props;
@@ -61,15 +115,27 @@ class WordList extends Component<Props> {
       return null;
     }
     const entry = this.getEntry();
+    const wordStyle = {
+      transform: `scale(${this.state.animatedWord})`,
+    };
+    const containerStyle = {
+      transform: `translateY(${this.state.animatedContainer}%)`,
+    };
     return (
-      <Container>
+      <Container style={containerStyle}>
+        <Keyboard onPress={this.handlePress} />
         <Slider
           data={words}
           index={index}
           renderSlide={({ item, style, index }) => (
             <Slide style={style}>
               <Transcription>/{item.transcription}/</Transcription>
-              <Word id={`word_${index}`} learnt={item.learnt}>
+              <Word
+                id={`word_${index}`}
+                learnt={item.learnt}
+                onClick={this.handleClick}
+                style={wordStyle}
+              >
                 {item.word}
               </Word>
               <Definition>{item.definition}</Definition>
@@ -103,8 +169,8 @@ const Details = glamorous.div({
   justifyContent: 'center',
   flexDirection: 'column',
   top: '100%',
-  left: 0,
-  right: 0,
+  left: '10%',
+  right: '10%',
   color: theme.text,
 });
 
@@ -148,6 +214,7 @@ const Word = glamorous.h1(({ learnt }) => ({
   color: theme.text,
   textShadow: '3px 3px rgba(0,0,0,0.3)',
   textDecoration: learnt ? 'line-through' : null,
+  cursor: 'pointer',
 }));
 
 const Transcription = glamorous.div({

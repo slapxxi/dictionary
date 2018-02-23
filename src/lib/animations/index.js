@@ -7,7 +7,7 @@ type Styler = Object;
 type Dimension = 'x' | 'y';
 
 type Config = {
-  styler: Styler,
+  styler?: Styler,
   to?: number,
   ease?: any,
   delay?: number,
@@ -56,9 +56,9 @@ function slideOut({
   );
 }
 
-function pop({ styler, duration = 100, to = 2 }: Config) {
+function pop({ duration = 100, to = 2 }: Config) {
   return chain(
-    tween({ from: styler.get('scale'), to: { scale: to }, duration }),
+    tween({ from: { scale: 1 }, to: { scale: to }, duration }),
     tween({ from: { scale: to }, to: { scale: 1 } }),
   );
 }

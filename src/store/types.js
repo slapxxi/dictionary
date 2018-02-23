@@ -24,7 +24,7 @@ export type Mode = 'default' | 'random';
 export type Transcription = string;
 
 export type Action =
-  | { type: 'ADD_ENTRY', payload: DictionaryEntry }
-  | { type: 'LEARN', payload: ID };
+  | { type: 'LEARN', payload: ID }
+  | { type: 'ADD_ENTRY', payload: DictionaryEntry };
 
 export type ID = number;
