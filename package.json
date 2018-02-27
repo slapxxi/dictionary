@@ -29,6 +29,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "cypress": "^2.0.2",
+    "enzyme-to-json": "^3.3.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jest": "^21.12.2",
@@ -41,6 +42,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "cypress": "cypress open"
+  },
+  "jest": {
+    "snapshotSerializers": ["enzyme-to-json/serializer"]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
