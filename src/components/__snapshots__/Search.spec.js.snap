@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<glamorous(div)>
+  <glamorous(input)
+    data-name="input"
+    onChange={[Function]}
+    placeholder="Search..."
+    value="test"
+  />
+  <glamorous(ul)>
+    <li>
+      Suggestion
+    </li>
+  </glamorous(ul)>
+</glamorous(div)>
+`;

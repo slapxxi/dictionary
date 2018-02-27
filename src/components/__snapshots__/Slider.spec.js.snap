@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders nothing if data is empty 1`] = `""`;
+
+exports[`renders slides 1`] = `
+<glamorous(div)>
+  <div
+    className="slide"
+  >
+    first
+  </div>
+  <div
+    className="slide"
+  />
+  <div
+    className="slide"
+  >
+    second
+  </div>
+</glamorous(div)>
+`;

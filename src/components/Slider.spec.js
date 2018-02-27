@@ -18,12 +18,12 @@ it('renders slides', () => {
       )}
     />,
   );
-  expect(component.find('.slide').length).toEqual(3);
+  expect(component).toMatchSnapshot();
 });
 
 it('renders nothing if data is empty', () => {
   const component = shallow(<Slider data={[]} />);
-  expect(component.html()).toBeNull();
+  expect(component).toMatchSnapshot();
 });
 
 it('animates transitions when receiving props', () => {
@@ -37,8 +37,8 @@ it('animates transitions when receiving props', () => {
   );
   component.setProps({ index: 1 });
   return expect(
-    timeout(() => render.mock.calls[4][0].opacity, 500),
-  ).resolves.toEqual(0.15287036419925532);
+    timeout(() => render.mock.calls.length, 800),
+  ).resolves.toBeGreaterThan(18);
 });
 
 function timeout(fn, time) {

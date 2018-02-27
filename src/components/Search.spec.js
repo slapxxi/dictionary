@@ -4,14 +4,7 @@ import Search from './Search';
 
 it('renders', () => {
   const component = shallow(<Search value="test" />);
-  expect(component.find('[data-name="input"]').length).toEqual(1);
-});
-
-it('is controlled', () => {
-  const component = shallow(<Search value="test" />);
-  expect(component.find('[data-name="input"]').prop('value')).toEqual(
-    'test',
-  );
+  expect(component).toMatchSnapshot();
 });
 
 it('triggers onChange when modified', () => {
