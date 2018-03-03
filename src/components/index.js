@@ -10,6 +10,7 @@ import Keyboard from './Keyboard';
 import Slider from './Slider';
 import Search from './Search';
 import AutoSuggest from './AutoSuggest';
+import CurrentIndex from './CurrentIndex';
 
 export {
   List,
@@ -23,4 +24,5 @@ export {
   Slider,
   Search,
   AutoSuggest,
+  CurrentIndex,
 };

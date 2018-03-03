@@ -4,6 +4,7 @@ import glamorous from 'glamorous';
 import { NavLink } from 'redux-first-router-link';
 import Search from 'react-icons/lib/fa/search';
 import ListIcon from 'react-icons/lib/fa/list-ul';
+import { CurrentIndex, Route } from './';
 import { colors, theme } from '../lib/constants';
 
 type Props = { iconSize?: number };
@@ -11,9 +12,13 @@ type Props = { iconSize?: number };
 function Header({ iconSize = 20 }: Props) {
   return (
     <Container>
+      <Route to="/">
+        <CurrentIndex style={{ flex: 1, padding: 10 }} />
+      </Route>
       <Link
         to="/search"
         href="/search"
+        className="route-search"
         activeStyle={{ color: theme.activelink }}
       >
         <SearchIcon size={iconSize} />
@@ -21,6 +26,7 @@ function Header({ iconSize = 20 }: Props) {
       <Link
         to="/"
         href="/"
+        className="route-home"
         activeStyle={{ color: theme.activelink }}
         exact
       >

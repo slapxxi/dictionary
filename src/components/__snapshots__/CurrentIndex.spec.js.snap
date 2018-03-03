@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`accepts style 1`] = `
+<nav
+  className="current-index"
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+>
+  11
+  /
+  20
+</nav>
+`;
+
+exports[`renders 1`] = `
+<nav
+  className="current-index"
+>
+  1
+  /
+  20
+</nav>
+`;

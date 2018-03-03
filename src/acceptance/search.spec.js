@@ -1,5 +1,7 @@
 import puppeteer from 'puppeteer';
 
+const URL = 'http://localhost:3000';
+
 describe('given user is on /search', () => {
   let browser;
   let page;
@@ -10,11 +12,16 @@ describe('given user is on /search', () => {
 
   beforeEach(async () => {
     page = await browser.newPage();
-    await page.goto('http://localhost:3000/search');
+    await page.goto(`${URL}/search`);
   });
 
   afterAll(async () => {
     await browser.close();
+  });
+
+  test('current index is hidden', async () => {
+    const index = await page.$('.current-index');
+    expect(index).toBeNull();
   });
 
   describe('when user types into search field', () => {
