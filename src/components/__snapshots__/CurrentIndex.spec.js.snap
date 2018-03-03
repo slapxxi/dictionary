@@ -9,9 +9,13 @@ exports[`accepts style 1`] = `
     }
   }
 >
-  11
-  /
-  20
+  <button
+    onClick={[Function]}
+  >
+    11
+    /
+    20
+  </button>
 </nav>
 `;
 
@@ -19,8 +23,12 @@ exports[`renders 1`] = `
 <nav
   className="current-index"
 >
-  1
-  /
-  20
+  <button
+    onClick={[Function]}
+  >
+    1
+    /
+    20
+  </button>
 </nav>
 `;
