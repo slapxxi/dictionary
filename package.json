@@ -46,7 +46,10 @@
     "cypress": "cypress open"
   },
   "jest": {
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer",
+      "jest-glamor-react"
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
