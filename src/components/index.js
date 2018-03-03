@@ -9,6 +9,7 @@ import Navigation from './Navigation';
 import Keyboard from './Keyboard';
 import Slider from './Slider';
 import Search from './Search';
+import AutoSuggest from './AutoSuggest';
 
 export {
   List,
@@ -21,4 +22,5 @@ export {
   Keyboard,
   Slider,
   Search,
+  AutoSuggest,
 };

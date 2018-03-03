@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
+import { AutoSuggest } from '.';
 import { theme } from '../lib/constants';
 
 type Props = { value: string, onChange?: (string) => void };
@@ -16,17 +17,17 @@ class Search extends Component<Props> {
   };
 
   render() {
+    const { value } = this.props;
     return (
       <Container>
         <Input
-          value={this.props.value}
+          className="search"
+          value={value}
           data-name="input"
           placeholder="Search..."
           onChange={this.handleChange}
         />
-        <Suggestions>
-          <li>Suggestion</li>
-        </Suggestions>
+        <AutoSuggest data={[{ text: 'test' }]} query={value} />
       </Container>
     );
   }
@@ -38,7 +39,7 @@ const Container = glamorous.div({
   flex: 1,
   alignItems: 'center',
   justifyContent: 'center',
-  '& > input:focus + ul': {
+  '& > input:focus + .autosuggest': {
     fontSize: 32,
   },
 });
@@ -64,11 +65,6 @@ const Input = glamorous.input({
   '::placeholder': {
     color: theme.subtext,
   },
-});
-
-const Suggestions = glamorous.ul({
-  flex: 1,
-  transition: 'all 0.3s',
 });
 
 export default Search;

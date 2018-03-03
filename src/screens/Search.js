@@ -18,6 +18,7 @@ class Search extends Component {
         <Heading>Search</Heading>
         <InputContainer>
           <Input
+            className="search"
             type="search"
             placeholder="Query..."
             value={this.state.query}

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders nothing if data is empty 1`] = `""`;
+
+exports[`renders nothing if data not provided 1`] = `""`;
+
+exports[`renders nothing if query not provided 1`] = `""`;
+
+exports[`renders suggestions 1`] = `
+<glamorous(div)
+  className="autosuggest"
+>
+  <ul>
+    <glamorous(li)>
+      abide
+    </glamorous(li)>
+    <glamorous(li)>
+      abysmal
+    </glamorous(li)>
+  </ul>
+</glamorous(div)>
+`;

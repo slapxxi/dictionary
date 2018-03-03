@@ -17,8 +17,16 @@ describe('given user is on /search', () => {
     await browser.close();
   });
 
-  it('works', async () => {
-    const url = await page.evaluate(() => document.URL);
-    expect(url).toEqual('http://localhost:3000/search');
+  describe('when user types into search field', () => {
+    it('displays a list of matches', async () => {
+      const search = await page.$('.search');
+      await search.type('ab');
+      await page.screenshot({ path: 'test.png' });
+      const suggestions = await page.$$eval(
+        '.autosuggest li',
+        (items) => items.map((i) => i.innerHTML),
+      );
+      expect(suggestions).toEqual(['abide', 'abysmal']);
+    });
   });
 });
