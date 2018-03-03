@@ -13,9 +13,7 @@ it('renders slides', () => {
     <Slider
       data={slides}
       index={0}
-      renderSlide={({ item }) => (
-        <div className="slide">{item.text}</div>
-      )}
+      renderSlide={({ item }) => <div>{item.text}</div>}
     />,
   );
   expect(component).toMatchSnapshot();

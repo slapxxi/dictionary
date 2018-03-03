@@ -4,17 +4,11 @@ exports[`renders nothing if data is empty 1`] = `""`;
 
 exports[`renders slides 1`] = `
 <glamorous(div)>
-  <div
-    className="slide"
-  >
+  <div>
     first
   </div>
-  <div
-    className="slide"
-  />
-  <div
-    className="slide"
-  >
+  <div />
+  <div>
     second
   </div>
 </glamorous(div)>
