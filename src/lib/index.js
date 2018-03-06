@@ -1,4 +1,5 @@
 // @flow
 import isRouteAction from './isRouteAction';
+import suggest from './suggest';
 
-export { isRouteAction };
+export { isRouteAction, suggest };

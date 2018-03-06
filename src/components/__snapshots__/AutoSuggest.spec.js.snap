@@ -11,10 +11,14 @@ exports[`renders suggestions 1`] = `
   className="autosuggest"
 >
   <ul>
-    <glamorous(li)>
+    <glamorous(li)
+      key="0"
+    >
       abide
     </glamorous(li)>
-    <glamorous(li)>
+    <glamorous(li)
+      key="1"
+    >
       abysmal
     </glamorous(li)>
   </ul>

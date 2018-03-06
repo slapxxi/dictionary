@@ -2,8 +2,11 @@
 import { isEmpty } from 'lodash';
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
+import { suggest } from '../lib';
 
-type Props = { data: Array<any>, query: any };
+type Props = { data: Array<Datum>, query: any };
+
+type Datum = { id: number, text: string };
 
 class AutoSuggest extends Component<Props> {
   render() {
@@ -11,11 +14,13 @@ class AutoSuggest extends Component<Props> {
     if (!data || isEmpty(data) || !query) {
       return null;
     }
+    const matches = suggest(query, data);
     return (
       <Container className="autosuggest">
         <ul>
-          <ListItem>abide</ListItem>
-          <ListItem>abysmal</ListItem>
+          {matches.map((m) => (
+            <ListItem key={m.id}>{m.text}</ListItem>
+          ))}
         </ul>
       </Container>
     );

@@ -4,6 +4,13 @@ import AutoSuggest from './AutoSuggest';
 
 const data = [{ text: 'test' }];
 
+jest.mock('../lib', () => ({
+  suggest: () => [
+    { id: 0, text: 'abide' },
+    { id: 1, text: 'abysmal' },
+  ],
+}));
+
 it('renders suggestions', () => {
   const component = shallow(<AutoSuggest data={data} query="test" />);
   expect(component).toMatchSnapshot();
