@@ -33,7 +33,7 @@ describe('given user is on /search', () => {
         '.autosuggest li',
         (items) => items.map((i) => i.innerHTML),
       );
-      expect(suggestions).toEqual(['abide', 'abysmal']);
+      expect(suggestions).toEqual(['abdominal']);
     });
   });
 });

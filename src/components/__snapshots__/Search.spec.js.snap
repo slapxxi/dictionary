@@ -1,23 +1,53 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-<glamorous(div)>
-  <glamorous(input)
-    className="search"
-    data-name="input"
-    onChange={[Function]}
-    placeholder="Search..."
-    value="test"
-  />
-  <AutoSuggest
-    data={
-      Array [
-        Object {
-          "text": "test",
-        },
-      ]
-    }
-    query="test"
-  />
-</glamorous(div)>
+.glamor-0,
+[data-glamor-0] {
+  display: block;
+  width: 100%;
+  border: 0;
+  background-color: transparent;
+  font-size: 64px;
+  text-align: center;
+  color: white;
+}
+
+.glamor-0:focus,
+[data-glamor-0]:focus {
+  outline: 0;
+}
+
+.glamor-0:focus::placeholder,
+[data-glamor-0]:focus::placeholder {
+  color: transparent;
+}
+
+.glamor-0::-webkit-input-placeholder,
+[data-glamor-0]::-webkit-input-placeholder {
+  color: #6D6F7f;
+}
+
+.glamor-0::-moz-placeholder,
+[data-glamor-0]::-moz-placeholder {
+  color: #6D6F7f;
+}
+
+.glamor-0::-ms-input-placeholder,
+[data-glamor-0]::-ms-input-placeholder {
+  color: #6D6F7f;
+}
+
+.glamor-0::placeholder,
+[data-glamor-0]::placeholder {
+  color: #6D6F7f;
+}
+
+<input
+  class="glamor-0 search"
+  data-test="input"
+  placeholder="Search"
+  value="test"
+>
+  
+</input>
 `;

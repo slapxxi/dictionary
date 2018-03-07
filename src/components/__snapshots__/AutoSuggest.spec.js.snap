@@ -1,26 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders nothing if data is empty 1`] = `""`;
+exports[`renders nothing if data is empty 1`] = `null`;
 
-exports[`renders nothing if data not provided 1`] = `""`;
+exports[`renders nothing if data not provided 1`] = `null`;
 
-exports[`renders nothing if query not provided 1`] = `""`;
+exports[`renders nothing if query not provided 1`] = `null`;
 
 exports[`renders suggestions 1`] = `
-<glamorous(div)
-  className="autosuggest"
+.glamor-2,
+[data-glamor-2] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+.glamor-0,
+[data-glamor-0] {
+  padding: 12px 0;
+  text-decoration: underline;
+  text-align: center;
+  font-size: 24px;
+}
+
+<div
+  class="glamor-2 autosuggest"
 >
   <ul>
-    <glamorous(li)
-      key="0"
+    <li
+      class="glamor-0"
     >
       abide
-    </glamorous(li)>
-    <glamorous(li)
-      key="1"
+    </li>
+    <li
+      class="glamor-0"
     >
       abysmal
-    </glamorous(li)>
+    </li>
   </ul>
-</glamorous(div)>
+</div>
 `;

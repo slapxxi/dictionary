@@ -1,32 +1,46 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from 'enzyme';
+import { suggest } from '../lib';
 import AutoSuggest from './AutoSuggest';
 
-const data = [{ text: 'test' }];
+const data = [{ word: 'test' }];
 
 jest.mock('../lib', () => ({
-  suggest: () => [
-    { id: 0, text: 'abide' },
-    { id: 1, text: 'abysmal' },
-  ],
+  suggest: jest
+    .fn()
+    .mockImplementation(() => [
+      { id: 0, word: 'abide' },
+      { id: 1, word: 'abysmal' },
+    ]),
 }));
 
+beforeEach(() => {
+  suggest.mockClear();
+});
+
 it('renders suggestions', () => {
-  const component = shallow(<AutoSuggest data={data} query="test" />);
+  const component = render(<AutoSuggest data={data} query="test" />);
   expect(component).toMatchSnapshot();
 });
 
+it('invokes suggest correctly', () => {
+  render(<AutoSuggest data={[{ word: 'test' }]} query="test" />);
+  expect(suggest.mock.calls[0][0]).toEqual('test');
+  expect(suggest.mock.calls[0][1]).toEqual([{ word: 'test' }]);
+  expect(suggest.mock.calls[0][2]).toBeDefined();
+});
+
 it('renders nothing if data is empty', () => {
-  const component = shallow(<AutoSuggest data={[]} query="test" />);
+  const component = render(<AutoSuggest data={[]} query="test" />);
   expect(component).toMatchSnapshot();
 });
 
 it('renders nothing if data not provided', () => {
-  const component = shallow(<AutoSuggest query="query" />);
+  const component = render(<AutoSuggest query="query" />);
   expect(component).toMatchSnapshot();
 });
 
 it('renders nothing if query not provided', () => {
-  const component = shallow(<AutoSuggest data={[]} />);
+  const component = render(<AutoSuggest data={[]} />);
   expect(component).toMatchSnapshot();
 });
