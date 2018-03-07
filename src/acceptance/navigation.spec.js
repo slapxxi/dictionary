@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
 
 const URL = 'http://localhost:3000';
+const TOTAL = 25;
 
 const selectors = {
   index: '.current-index > button',
@@ -37,7 +38,7 @@ describe('given user is on /', () => {
         selectors.index,
         (e) => e.innerHTML,
       );
-      expect(index).toEqual('2/14');
+      expect(index).toEqual(`2/${TOTAL}`);
     });
   });
 
@@ -50,7 +51,7 @@ describe('given user is on /', () => {
         selectors.index,
         (e) => e.innerHTML,
       );
-      expect(index).toEqual('10/14');
+      expect(index).toEqual(`10/${TOTAL}`);
     });
   });
 
@@ -63,7 +64,7 @@ describe('given user is on /', () => {
         selectors.index,
         (e) => e.innerHTML,
       );
-      expect(index).toEqual('2/14');
+      expect(index).toEqual(`2/${TOTAL}`);
     });
   });
 });
