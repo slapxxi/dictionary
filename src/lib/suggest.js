@@ -8,12 +8,12 @@ function suggest<T>(
   data: Array<T>,
   predicate: Predicate<T>,
 ): Array<T> {
-  const q = query.trim();
+  const q = query.replace(/[\d\\[\]*]/gi, '').trim();
   if (q === '') {
     return [];
   }
   return data.filter((item) =>
-    new RegExp(`${q}`, 'i').test(predicate(item)),
+    new RegExp(`^${q}`, 'i').test(predicate(item)),
   );
 }
 

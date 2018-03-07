@@ -29,6 +29,15 @@ it('ignores whitespace in query parameter', () => {
   expect(result).toEqual([{ text: 'TESTING' }]);
 });
 
+it('ignores non letters in query parameter', () => {
+  const result = suggest(
+    '[\\]* test',
+    [{ text: 'TESTING' }],
+    _.property('text'),
+  );
+  expect(result).toEqual([{ text: 'TESTING' }]);
+});
+
 it('does not suggest anything when query is empty', () => {
   const result = suggest(
     '  ',

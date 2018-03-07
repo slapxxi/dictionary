@@ -183,12 +183,14 @@ const Details = glamorous.div({
   bottom: '-90%',
   paddingTop: 48,
   color: theme.text,
+  overflow: 'scroll',
 });
 
 const DetailsSection = glamorous.div({
   display: 'flex',
   flexDirection: 'column',
   minWidth: '33%',
+  maxWidth: '50%',
 });
 
 const Heading = glamorous.h1({
