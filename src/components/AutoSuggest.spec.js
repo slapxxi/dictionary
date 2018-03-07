@@ -19,12 +19,24 @@ beforeEach(() => {
 });
 
 it('renders suggestions', () => {
-  const component = render(<AutoSuggest data={data} query="test" />);
+  const component = render(
+    <AutoSuggest
+      query="test"
+      data={data}
+      render={(item) => item.word}
+    />,
+  );
   expect(component).toMatchSnapshot();
 });
 
 it('invokes suggest correctly', () => {
-  render(<AutoSuggest data={[{ word: 'test' }]} query="test" />);
+  render(
+    <AutoSuggest
+      query="test"
+      data={[{ word: 'test' }]}
+      render={(item) => item.word}
+    />,
+  );
   expect(suggest.mock.calls[0][0]).toEqual('test');
   expect(suggest.mock.calls[0][1]).toEqual([{ word: 'test' }]);
   expect(suggest.mock.calls[0][2]).toBeDefined();

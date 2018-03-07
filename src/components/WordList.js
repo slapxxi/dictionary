@@ -95,20 +95,6 @@ class WordList extends Component<Props, State> {
     return index > props.words.length - 1 || index < 0;
   };
 
-  renderExamples = (entry: DictionaryEntry) => {
-    return (
-      <List>
-        {entry.examples.map((example) => (
-          <ListItem key={example}>&quot;{example}&quot;</ListItem>
-        ))}
-      </List>
-    );
-  };
-
-  renderThesaurus = (entry: DictionaryEntry) => {
-    return <Thesaurus>{entry.thesaurus.join(', ')}</Thesaurus>;
-  };
-
   render() {
     const { words, index = 0 } = this.props;
     if (isEmpty(words)) {
@@ -143,14 +129,38 @@ class WordList extends Component<Props, State> {
           )}
         />
         <Details>
-          <Heading>Examples</Heading>
-          {this.renderExamples(entry)}
-          <Heading>Thesaurus</Heading>
-          {this.renderThesaurus(entry)}
+          <DetailsSection>
+            <Heading>Examples</Heading>
+            {this.renderExamples(entry)}
+          </DetailsSection>
+          <DetailsSection>
+            <Heading>Thesaurus</Heading>
+            {this.renderThesaurus(entry)}
+          </DetailsSection>
         </Details>
       </Container>
     );
   }
+
+  renderExamples = (entry: DictionaryEntry) => {
+    return (
+      <List>
+        {entry.examples.map((example) => (
+          <ListItem key={example}>{example}</ListItem>
+        ))}
+      </List>
+    );
+  };
+
+  renderThesaurus = (entry: DictionaryEntry) => {
+    return (
+      <List>
+        {entry.thesaurus.map((example) => (
+          <ListItem key={example}>{example}</ListItem>
+        ))}
+      </List>
+    );
+  };
 }
 
 const Container = glamorous.div({
@@ -163,39 +173,44 @@ const Container = glamorous.div({
 });
 
 const Details = glamorous.div({
+  boxSizing: 'border-box',
   position: 'absolute',
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  flexDirection: 'column',
+  justifyContent: 'space-around',
   top: '100%',
   left: '10%',
   right: '10%',
+  bottom: '-90%',
+  paddingTop: 48,
   color: theme.text,
 });
 
+const DetailsSection = glamorous.div({
+  display: 'flex',
+  flexDirection: 'column',
+  minWidth: '33%',
+});
+
 const Heading = glamorous.h1({
-  marginTop: 32,
   marginBottom: 32,
   fontWeight: 'lighter',
   fontFamily: 'serif',
   fontStyle: 'italic',
-  color: theme.subtext,
+  color: theme.text,
 });
 
 const List = glamorous.ul({
-  marginTop: 20,
+  margin: 0,
+  padding: 0,
   listStyle: 'circle',
+  listStylePosition: 'inside',
+  color: theme.subtext,
 });
 
 const ListItem = glamorous.li({
-  padding: 10,
+  marginBottom: 18,
   fontSize: 18,
   fontStyle: 'italic',
-});
-
-const Thesaurus = glamorous.div({
-  fontSize: 18,
 });
 
 const Slide = glamorous.div({

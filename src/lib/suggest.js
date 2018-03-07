@@ -1,11 +1,13 @@
 // @flow
 type Query = string;
 
-type Data = Array<any>;
+type Predicate<T> = (T) => string;
 
-type Predicate = (any) => string;
-
-function suggest(query: Query, data: Data, predicate: Predicate) {
+function suggest<T>(
+  query: Query,
+  data: Array<T>,
+  predicate: Predicate<T>,
+): Array<T> {
   const q = query.trim();
   if (q === '') {
     return [];

@@ -3,14 +3,17 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import glamorous from 'glamorous';
 import { suggest } from '../lib';
+import type { DictionaryEntry } from '../store/types';
 
-type Props = { data: Array<Datum>, query: any };
+type Props<T> = {
+  data: Array<T>,
+  query: string,
+  render: (T) => any,
+};
 
-type Datum = { id: number, text: string };
-
-class AutoSuggest extends Component<Props> {
+class AutoSuggest extends Component<Props<DictionaryEntry>> {
   render() {
-    const { data, query } = this.props;
+    const { data, query, render } = this.props;
     if (!data || _.isEmpty(data) || !query) {
       return null;
     }
@@ -19,7 +22,7 @@ class AutoSuggest extends Component<Props> {
       <Container className="autosuggest">
         <ul>
           {matches.map((m) => (
-            <ListItem key={m.id}>{m.word}</ListItem>
+            <ListItem key={m.id}>{render(m)}</ListItem>
           ))}
         </ul>
       </Container>
@@ -34,7 +37,6 @@ const Container = glamorous.div({
 
 const ListItem = glamorous.li({
   padding: '12px 0',
-  textDecoration: 'underline',
   textAlign: 'center',
   fontSize: 24,
 });

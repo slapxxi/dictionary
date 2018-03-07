@@ -21,7 +21,6 @@ exports[`renders suggestions 1`] = `
 .glamor-0,
 [data-glamor-0] {
   padding: 12px 0;
-  text-decoration: underline;
   text-align: center;
   font-size: 24px;
 }

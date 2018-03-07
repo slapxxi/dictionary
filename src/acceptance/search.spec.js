@@ -30,7 +30,7 @@ describe('given user is on /search', () => {
       await search.type('ab');
       await page.screenshot({ path: 'test.png' });
       const suggestions = await page.$$eval(
-        '.autosuggest li',
+        '.autosuggest li a',
         (items) => items.map((i) => i.innerHTML),
       );
       expect(suggestions).toEqual(['abdominal']);

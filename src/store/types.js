@@ -27,6 +27,7 @@ export type Transcription = string;
 export type SearchState = { query: Query };
 
 export type Action =
+  | { type: 'HOME_ROUTE', payload?: { index: ID } }
   | { type: 'LEARN', payload: ID }
   | { type: 'SEARCH', payload: Query }
   | { type: 'CHANGE_INDEX', payload: ID }

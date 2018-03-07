@@ -15,6 +15,8 @@ function reducer(state: Dictionary = data, action: Action) {
         ...state,
         entries: learn(state.entries, action.payload),
       };
+    case 'HOME_ROUTE':
+      return changeIndex(state, action);
     case 'CHANGE_INDEX':
       return { ...state, index: action.payload };
     default:
@@ -22,6 +24,11 @@ function reducer(state: Dictionary = data, action: Action) {
         ? { ...state, mode: 'default' }
         : state;
   }
+}
+
+function changeIndex(state, action) {
+  const { index = state.index } = action.payload || {};
+  return { ...state, index };
 }
 
 function learn(items, id) {
