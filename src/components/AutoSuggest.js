@@ -21,9 +21,12 @@ class AutoSuggest extends Component<Props<DictionaryEntry>> {
     return (
       <Container className="autosuggest">
         <ul>
-          {matches.map((m) => (
-            <ListItem key={m.id}>{render(m)}</ListItem>
-          ))}
+          {matches.map(
+            (m) =>
+              render(m) && (
+                <ListItem key={m.id}>{render(m)}</ListItem>
+              ),
+          )}
         </ul>
       </Container>
     );

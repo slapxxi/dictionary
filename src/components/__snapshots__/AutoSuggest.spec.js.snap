@@ -1,5 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`does not render item when render returns undefined 1`] = `
+.glamor-0,
+[data-glamor-0] {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 1;
+  -webkit-flex: 1;
+}
+
+<div
+  class="glamor-0 autosuggest"
+>
+  <ul>
+    
+  </ul>
+</div>
+`;
+
 exports[`renders nothing if data is empty 1`] = `null`;
 
 exports[`renders nothing if data not provided 1`] = `null`;

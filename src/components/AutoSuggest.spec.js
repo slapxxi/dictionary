@@ -39,6 +39,17 @@ it('invokes suggest to determine suggestions', () => {
   expect(suggest).toBeCalled();
 });
 
+it('does not render item when render returns undefined', () => {
+  const component = render(
+    <AutoSuggest
+      query="test"
+      data={[{ word: 'test' }]}
+      render={() => null}
+    />,
+  );
+  expect(component).toMatchSnapshot();
+});
+
 it('renders nothing if data is empty', () => {
   const component = render(<AutoSuggest data={[]} query="test" />);
   expect(component).toMatchSnapshot();
