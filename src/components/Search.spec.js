@@ -8,10 +8,10 @@ it('renders', () => {
 });
 
 it('triggers onChange when modified', () => {
-  const change = jest.fn();
-  const component = shallow(<Search onChange={change} />);
+  const onChange = jest.fn();
+  const component = shallow(<Search onChange={onChange} />);
   component
     .find('[data-test="input"]')
     .simulate('change', { currentTarget: { value: 'test' } });
-  expect(change).toBeCalledWith('test');
+  expect(onChange).toBeCalledWith('test');
 });

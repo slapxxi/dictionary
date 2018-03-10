@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import React from 'react';
 import { render } from 'enzyme';
 import { suggest } from '../lib';
@@ -6,12 +7,10 @@ import AutoSuggest from './AutoSuggest';
 const data = [{ word: 'test' }];
 
 jest.mock('../lib', () => ({
-  suggest: jest
-    .fn()
-    .mockImplementation(() => [
-      { id: 0, word: 'abide' },
-      { id: 1, word: 'abysmal' },
-    ]),
+  suggest: jest.fn((...params) => {
+    expect(params).toHaveLength(3);
+    return [{ id: 0, word: 'abide' }, { id: 1, word: 'abysmal' }];
+  }),
 }));
 
 beforeEach(() => {
@@ -23,23 +22,21 @@ it('renders suggestions', () => {
     <AutoSuggest
       query="test"
       data={data}
-      render={(item) => item.word}
+      render={_.property('word')}
     />,
   );
   expect(component).toMatchSnapshot();
 });
 
-it('invokes suggest correctly', () => {
+it('invokes suggest to determine suggestions', () => {
   render(
     <AutoSuggest
       query="test"
       data={[{ word: 'test' }]}
-      render={(item) => item.word}
+      render={_.property('word')}
     />,
   );
-  expect(suggest.mock.calls[0][0]).toEqual('test');
-  expect(suggest.mock.calls[0][1]).toEqual([{ word: 'test' }]);
-  expect(suggest.mock.calls[0][2]).toBeDefined();
+  expect(suggest).toBeCalled();
 });
 
 it('renders nothing if data is empty', () => {
