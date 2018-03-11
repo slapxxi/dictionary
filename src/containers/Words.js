@@ -24,7 +24,6 @@ class Words extends Component<Props, State> {
   };
 
   componentWillUnmount() {
-    console.log('unmount');
     if (this.timeout) {
       clearTimeout(this.timeout);
     }
@@ -54,7 +53,7 @@ class Words extends Component<Props, State> {
       if (this.props.view) {
         this.props.view(index);
       }
-    }, 1000);
+    }, 500);
   };
 
   nextWord = () => {
