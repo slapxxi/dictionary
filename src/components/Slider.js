@@ -148,7 +148,7 @@ class Slider extends Component<Props, State> {
         scale,
         nextScale,
       }) => {
-        this.setState({
+        this.setState(() => ({
           style: {
             transform: `translateX(${x}%) scale(${scale})`,
             opacity,
@@ -161,7 +161,7 @@ class Slider extends Component<Props, State> {
             transform: `translateX(${nextX}%) scale(${nextScale})`,
             opacity: nextOpacity,
           },
-        });
+        }));
       },
       complete: () => {
         this.setState(() => ({
@@ -184,11 +184,20 @@ class Slider extends Component<Props, State> {
   };
 
   getItems = (props: Props) => {
+    let prevIndex;
+    let nextIndex;
     const { data } = props;
     const { index } = this.state;
     const item = data[index];
-    const prevItem = data[index - 1];
-    const nextItem = data[index + 1];
+    if (_.isUndefined(props.index)) {
+      prevIndex = index - 1;
+      nextIndex = index + 1;
+    } else {
+      prevIndex = props.index;
+      nextIndex = props.index;
+    }
+    const prevItem = data[prevIndex];
+    const nextItem = data[nextIndex];
     return { item, nextItem, prevItem };
   };
 
