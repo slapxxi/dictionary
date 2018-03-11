@@ -25,12 +25,14 @@ const Badge = glamorous.div(
     color: theme.text,
   },
   ({ children }) => ({
-    display: children === 0 ? 'none' : 'flex',
+    display: children === 0 ? 'none' : 'inline-flex',
   }),
 );
 
 const enhance = connect((state) => ({
   children: nonViewedCount(state),
 }));
+
+export { Badge };
 
 export default enhance(Badge);
