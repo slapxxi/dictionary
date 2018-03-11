@@ -1,7 +1,7 @@
 // @flow
-import { isEmpty } from 'lodash';
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { tween } from 'popmotion';
+import { timeline } from 'popmotion';
 import glamorous from 'glamorous';
 
 type Props = {
@@ -48,32 +48,126 @@ class Slider extends Component<Props, State> {
       return;
     }
     if (direction === 'next') {
-      animation = {
-        from: { x: 0, prevX: -200, nextX: -100, show: 0 },
-        to: { x: -100, prevX: -200, nextX: -200, show: 0.5 },
-      };
+      animation = timeline([
+        [
+          {
+            track: 'opacity',
+            from: 1,
+            to: 0,
+          },
+          {
+            track: 'scale',
+            from: 1,
+            to: 0.5,
+            duration: 200,
+          },
+        ],
+        75,
+        [
+          {
+            track: 'x',
+            from: 0,
+            to: -100,
+          },
+          {
+            track: 'nextOpacity',
+            from: 0,
+            to: 1,
+          },
+          {
+            track: 'nextX',
+            from: -100,
+            to: -200,
+          },
+          {
+            track: 'prevX',
+            from: -200,
+            to: -200,
+          },
+        ],
+        200,
+        {
+          track: 'nextScale',
+          from: 0.5,
+          to: 1,
+        },
+      ]);
     } else {
-      animation = {
-        from: { x: 0, hide: 1, prevX: -200, nextX: 0, show: 0 },
-        to: { x: 100, hide: 0, prevX: -100, nextX: 0, show: 0.5 },
-      };
+      animation = timeline([
+        [
+          {
+            track: 'opacity',
+            from: 1,
+            to: 0,
+          },
+          {
+            track: 'scale',
+            from: 1,
+            to: 0.5,
+            duration: 200,
+          },
+        ],
+        75,
+        [
+          {
+            track: 'x',
+            from: 0,
+            to: 100,
+          },
+          {
+            track: 'nextOpacity',
+            from: 0,
+            to: 1,
+          },
+          {
+            track: 'nextX',
+            from: 0,
+            to: 0,
+          },
+          {
+            track: 'prevX',
+            from: -200,
+            to: -100,
+          },
+        ],
+        200,
+        {
+          track: 'nextScale',
+          from: 0.5,
+          to: 1,
+        },
+      ]);
     }
-    tween(animation).start({
-      update: ({ x, prevX, nextX, show }) => {
+    animation.start({
+      update: ({
+        x,
+        prevX,
+        nextX,
+        opacity,
+        nextOpacity,
+        scale,
+        nextScale,
+      }) => {
         this.setState({
-          style: { transform: `translateX(${x}%)` },
+          style: {
+            transform: `translateX(${x}%) scale(${scale})`,
+            opacity,
+          },
           prevStyle: {
-            transform: `translateX(${prevX}%)`,
-            opacity: show,
+            transform: `translateX(${prevX}%) scale(${nextScale})`,
+            opacity: nextOpacity,
           },
           nextStyle: {
-            transform: `translateX(${nextX}%)`,
-            opacity: show,
+            transform: `translateX(${nextX}%) scale(${nextScale})`,
+            opacity: nextOpacity,
           },
         });
       },
       complete: () => {
-        this.setState({ index: props.index, ...this.defaultStyles });
+        this.setState(() => ({
+          index: props.index,
+          ...this.defaultStyles,
+        }));
       },
     });
   }
@@ -102,7 +196,7 @@ class Slider extends Component<Props, State> {
     const { index } = this.state;
     const { item, nextItem, prevItem } = this.getItems(this.props);
     const { data, renderSlide } = this.props;
-    if (isEmpty(data)) {
+    if (_.isEmpty(data)) {
       return null;
     }
     return (
