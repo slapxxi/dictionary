@@ -11,6 +11,7 @@ import Slider from './Slider';
 import Search from './Search';
 import AutoSuggest from './AutoSuggest';
 import CurrentIndex from './CurrentIndex';
+import Badge from './Badge';
 
 export {
   List,
@@ -25,4 +26,5 @@ export {
   Search,
   AutoSuggest,
   CurrentIndex,
+  Badge,
 };

@@ -25,12 +25,14 @@ function SearchContainer({ value, data, onChange }: Props) {
         data={data}
         render={(item) => (
           <NavigationLink
+            learnt={item.learnt}
             to={{
               type: 'HOME_ROUTE',
               payload: { index: item.id },
             }}
           >
             {item.word}
+            {item.viewCount === 0 && <Indicator />}
           </NavigationLink>
         )}
       />
@@ -49,12 +51,29 @@ const InputContainer = glamorous.div({
   marginBottom: 20,
 });
 
-const NavigationLink = glamorous(Link)({
-  color: theme.subtext,
-  '&:hover': {
-    textDecoration: 'none',
-    color: theme.activelink,
+const NavigationLink = glamorous(Link)(
+  {
+    position: 'relative',
+    color: theme.subtext,
+    '&:hover': {
+      textDecoration: 'none',
+      color: theme.activelink,
+    },
   },
+  ({ learnt }) => ({
+    textDecoration: learnt ? 'line-through' : 'underline',
+    color: learnt ? theme.hiddentext : 'inherit',
+  }),
+);
+
+const Indicator = glamorous.div({
+  position: 'absolute',
+  top: 0,
+  left: 'calc(100% + 2.5px)',
+  width: 5,
+  height: 5,
+  backgroundColor: theme.badge,
+  borderRadius: '50%',
 });
 
 const enhance = connect(

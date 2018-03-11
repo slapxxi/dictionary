@@ -25,10 +25,10 @@ exports[`renders slides 1`] = `
     first
   </div>
   <div>
-    
+    first
   </div>
   <div>
-    second
+    first
   </div>
 </div>
 `;

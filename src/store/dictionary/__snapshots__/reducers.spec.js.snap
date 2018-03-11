@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`when changing index changes index 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "viewCount": 0,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 1,
+}
+`;
+
+exports[`when changing index does not change index if beyond limits 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "viewCount": 0,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 0,
+}
+`;
+
+exports[`when learning ignores non matching words 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "viewCount": 0,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 0,
+}
+`;
+
+exports[`when learning learns matching word 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "learnt": true,
+      "viewCount": 0,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 0,
+}
+`;
+
+exports[`when viewed ignores view count non matching items 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "viewCount": 0,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 0,
+}
+`;
+
+exports[`when viewed increases view count of item with matching id 1`] = `
+Object {
+  "entries": Array [
+    Object {
+      "id": 0,
+      "viewCount": 1,
+    },
+    Object {
+      "id": 1,
+      "viewCount": 0,
+    },
+  ],
+  "index": 0,
+}
+`;

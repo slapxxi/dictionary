@@ -12,6 +12,7 @@ const colors = {
   grey: '#6D6F7C',
   lightgrey: '#F1F0F3',
   bluegrey: '#5D687C',
+  comment: '#40404A',
 };
 
 const theme = {
@@ -21,6 +22,8 @@ const theme = {
   link: colors.bluegrey,
   activelink: colors.white,
   heading: colors.bg,
+  badge: colors.red,
+  hiddentext: colors.comment,
 };
 
 export { colors, theme };

@@ -14,6 +14,7 @@ export type DictionaryEntry = {
   +examples: Array<Sentence>,
   +thesaurus: Array<Word>,
   +learnt: boolean,
+  +viewCount: number,
 };
 
 export type Sentence = string;
@@ -29,6 +30,7 @@ export type SearchState = { query: Query };
 export type Action =
   | { type: 'HOME_ROUTE', payload?: { index: ID } }
   | { type: 'LEARN', payload: ID }
+  | { type: 'VIEW', payload: ID }
   | { type: 'SEARCH', payload: Query }
   | { type: 'CHANGE_INDEX', payload: ID }
   | { type: 'ADD_ENTRY', payload: DictionaryEntry };

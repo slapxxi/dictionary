@@ -3,13 +3,14 @@ import { inRange } from 'lodash';
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { WordList, Keyboard } from '../components';
-import { learn, changeIndex } from '../store/actions';
+import { learn, changeIndex, view } from '../store/actions';
 import type { Action, DictionaryEntry } from '../store/types';
 
 type Props = {
   index: number,
   words: Array<DictionaryEntry>,
   learn: (index: number) => Action,
+  view: (index: number) => Action,
   onChangeIndex: (index: number) => void,
 };
 
@@ -21,6 +22,13 @@ class Words extends Component<Props, State> {
   state = {
     expanded: false,
   };
+
+  componentWillUnmount() {
+    console.log('unmount');
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
+  }
 
   handlePress = ({ key }) => {
     if (key === 'ArrowLeft') {
@@ -39,6 +47,14 @@ class Words extends Component<Props, State> {
 
   handleToggle = (index: number) => {
     this.props.learn(index);
+  };
+
+  handleShow = (index: number) => {
+    this.timeout = setTimeout(() => {
+      if (this.props.view) {
+        this.props.view(index);
+      }
+    }, 1000);
   };
 
   nextWord = () => {
@@ -96,6 +112,7 @@ class Words extends Component<Props, State> {
           index={this.props.index}
           expand={this.state.expanded}
           onToggle={this.handleToggle}
+          onShow={this.handleShow}
         />
       </Fragment>
     );
@@ -107,7 +124,11 @@ const enhance = connect(
     words: dictionary.entries,
     index: dictionary.index,
   }),
-  { learn, onChangeIndex: changeIndex },
+  {
+    view,
+    learn,
+    onChangeIndex: changeIndex,
+  },
 );
 
 export { Words };

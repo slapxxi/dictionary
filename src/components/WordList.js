@@ -13,6 +13,7 @@ type Props = {
   expand?: boolean,
   index?: number,
   onToggle: (index: number) => void,
+  onShow?: (index: number) => void,
 };
 
 type State = {
@@ -71,6 +72,12 @@ class WordList extends Component<Props, State> {
     this.props.onToggle(index);
   };
 
+  handleTransitionEnd = (index: number) => {
+    if (this.props.onShow) {
+      this.props.onShow(index);
+    }
+  };
+
   checkErrors = (props: Props) => {
     const { index = 0 } = props;
     if (this.isOutOfRange(props)) {
@@ -113,12 +120,14 @@ class WordList extends Component<Props, State> {
         <Slider
           data={words}
           index={index}
+          onTransitionEnd={this.handleTransitionEnd}
           renderSlide={({ item, style, index }) => (
             <Slide style={style}>
               <Transcription>/{item.transcription}/</Transcription>
               <Word
                 id={`word_${index}`}
                 learnt={item.learnt}
+                viewCount={item.viewCount}
                 onClick={this.handleClick}
                 style={wordStyle}
               >
@@ -222,17 +231,36 @@ const Slide = glamorous.div({
   alignItems: 'center',
 });
 
-const Word = glamorous.h1(({ learnt }) => ({
-  flex: 1,
-  display: 'flex',
-  alignItems: 'center',
-  fontSize: 64,
-  fontWeight: 'normal',
-  color: theme.text,
-  textShadow: '3px 3px rgba(0,0,0,0.3)',
-  textDecoration: learnt ? 'line-through' : null,
-  cursor: 'pointer',
-}));
+const Word = glamorous.h1(
+  ({ learnt }) => ({
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 64,
+    fontWeight: 'normal',
+    color: theme.text,
+    textShadow: '3px 3px rgba(0,0,0,0.3)',
+    textDecoration: learnt ? 'line-through' : null,
+    cursor: 'pointer',
+  }),
+  ({ viewCount }) =>
+    viewCount === 0 && {
+      ':after': {
+        position: 'absolute',
+        left: '100%',
+        top: 0,
+        display: 'block',
+        content: ' ',
+        backgroundColor: theme.badge,
+        borderRadius: '50%',
+        width: 12,
+        height: 12,
+        marginRight: -6,
+        fontSize: 0,
+        color: 'transparent',
+      },
+    },
+);
 
 const Transcription = glamorous.div({
   flex: 2,

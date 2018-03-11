@@ -50,6 +50,7 @@ function createEntries(entries) {
         .map(capitalize),
       thesaurus: data[4].trim().split(','),
       learnt: false,
+      viewCount: 0,
     };
   });
 }

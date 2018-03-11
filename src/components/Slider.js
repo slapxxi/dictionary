@@ -8,6 +8,7 @@ type Props = {
   data: Data,
   index?: number,
   renderSlide: (any) => any,
+  onTransitionEnd?: (index: number) => any,
 };
 
 type State = {
@@ -36,6 +37,16 @@ class Slider extends Component<Props, State> {
       index,
       ...this.defaultStyles,
     };
+  }
+
+  componentDidMount() {
+    this.endTransition();
+  }
+
+  componentWillUnmount() {
+    if (this.animation) {
+      this.animation.stop();
+    }
   }
 
   componentWillReceiveProps(props: Props) {
@@ -138,7 +149,7 @@ class Slider extends Component<Props, State> {
         },
       ]);
     }
-    animation.start({
+    this.animation = animation.start({
       update: ({
         x,
         prevX,
@@ -164,6 +175,7 @@ class Slider extends Component<Props, State> {
         }));
       },
       complete: () => {
+        this.endTransition();
         this.setState(() => ({
           index: props.index,
           ...this.defaultStyles,
@@ -171,6 +183,13 @@ class Slider extends Component<Props, State> {
       },
     });
   }
+
+  endTransition = () => {
+    if (this.props.onTransitionEnd) {
+      const { index = this.state.index } = this.props;
+      this.props.onTransitionEnd(index);
+    }
+  };
 
   getDirection = (props: Props) => {
     const { index = 0 } = props;
