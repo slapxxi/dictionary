@@ -23,7 +23,7 @@ class Search extends Component<Props> {
         value={value}
         data-test="input"
         onChange={this.handleChange}
-        placeholder="Search"
+        placeholder="Enter a search query..."
       />
     );
   }
