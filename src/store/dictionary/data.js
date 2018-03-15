@@ -42,6 +42,8 @@ const data: Dictionary = {
     'endow; inˈdou; give or bequeath an income or property to (a person or institution); he endowed the church with lands: he was endowed with tremendous physical strength; provide, supply, furnish, equip, invest, favor, bless, grace, gift',
     "frantic; ˈfran(t)ik; wild or distraught with fear, anxiety, or other emotion; she was frantic with worry: frantic attempts to resuscitate the girl;  panic-stricken, panicky, beside oneself, at one's wits' end, distraught, overwrought, worked up, agitated, distressed; frenzied, wild, frenetic, fraught, feverish, hysterical, desperate; informal in a state, in a tizzy, wound up, het up, in a flap, tearing one's hair out",
     "fend; fend; look after and provide for oneself, without any help from others; you're old enough to fend for yourself; take care of oneself, look after oneself, provide for oneself, manage (by oneself), cope alone, stand on one's own two feet ",
+    'menial; ˈmēnēəl; (of work) not requiring much skill and lacking prestige; menial factory jobs; unskilled, lowly, humble, low-status, inferior, degrading',
+    'drudgery; ˈdrəj(ə)rē; hard menial or dull work; domestic drudgery; hard work, menial work, donkey work, toil, labor',
   ]),
 };
 
