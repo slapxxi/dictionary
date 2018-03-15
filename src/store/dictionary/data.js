@@ -1,12 +1,11 @@
 // @flow
-import { capitalize } from 'lodash';
+import { parseEntries } from '../../lib';
 import type { Dictionary } from '../types';
 
-// Use ':' to divide example sentences.
 const data: Dictionary = {
   index: 0,
   mode: 'default',
-  entries: createEntries([
+  entries: parseEntries([
     'abdominal; ˌabˈdämən(ə)l; relating to the abdomen; Abdominal pain.; gastric, intestinal',
     'adhere; ədˈhir; believe in and follow the practices of; the people adhere to the Muslim religion.:the account adhered firmly to fact.; abide by, stick to, hold to, comply with, act in accordance with, conform to, submit to',
     'adjacent; əˈjās(ə)nt; next to or adjoining something else; Adjacent rooms: The area adjacent to the fire station; adjoining, neighboring, next-door',
@@ -46,25 +45,5 @@ const data: Dictionary = {
     'drudgery; ˈdrəj(ə)rē; hard menial or dull work; domestic drudgery; hard work, menial work, donkey work, toil, labor',
   ]),
 };
-
-function createEntries(entries) {
-  return entries.map((entry, index) => {
-    const data = entry.split(';');
-    return {
-      id: index,
-      word: data[0].trim(),
-      transcription: data[1].trim(),
-      definition: data[2].trim(),
-      examples: data[3]
-        .trim()
-        .split(':')
-        .map((i) => i.trim())
-        .map(capitalize),
-      thesaurus: data[4].trim().split(','),
-      learnt: false,
-      viewCount: 0,
-    };
-  });
-}
 
 export default data;

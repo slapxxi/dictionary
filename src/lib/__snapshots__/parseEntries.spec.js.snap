@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`merges additional params 1`] = `
+Array [
+  Object {
+    "definition": "d",
+    "examples": Array [
+      "Usage",
+    ],
+    "id": 0,
+    "learnt": true,
+    "thesaurus": Array [
+      "similar",
+    ],
+    "transcription": "t",
+    "viewCount": 1,
+    "word": "w",
+  },
+]
+`;
+
+exports[`parses strings to produce dictionary entries 1`] = `
+Array [
+  Object {
+    "definition": "definition",
+    "examples": Array [
+      "Example of usage",
+    ],
+    "id": 0,
+    "learnt": false,
+    "thesaurus": Array [
+      "similar words",
+    ],
+    "transcription": "transcription",
+    "viewCount": 0,
+    "word": "word",
+  },
+]
+`;
