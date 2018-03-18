@@ -5,7 +5,6 @@ import { NavLink } from 'redux-first-router-link';
 import Search from 'react-icons/lib/fa/search';
 import ListIcon from 'react-icons/lib/fa/list-ul';
 import { CurrentIndex, Route, Badge } from './';
-import { colors, theme } from '../lib/constants';
 
 type Props = { iconSize?: number };
 
@@ -15,21 +14,10 @@ function Header({ iconSize = 20 }: Props) {
       <Route to="/">
         <CurrentIndex style={{ flex: 1, padding: 10 }} />
       </Route>
-      <Link
-        to="/search"
-        href="/search"
-        className="route-search"
-        activeStyle={{ color: theme.activelink }}
-      >
+      <Link to="/search" href="/search" className="route-search">
         <SearchIcon size={iconSize} />
       </Link>
-      <Link
-        to="/"
-        href="/"
-        className="route-home"
-        activeStyle={{ color: theme.activelink }}
-        exact
-      >
+      <Link to="/" href="/" className="route-home" exact>
         <ListIcon size={iconSize} />
         <Badge />
       </Link>
@@ -37,11 +25,18 @@ function Header({ iconSize = 20 }: Props) {
   );
 }
 
-const Link = glamorous(NavLink)({
-  position: 'relative',
-  padding: 10,
-  color: colors.grey,
-});
+const Link = glamorous(NavLink)(
+  {
+    position: 'relative',
+    padding: 10,
+  },
+  ({ theme }) => ({
+    color: theme.subtext,
+    '&.active': {
+      color: theme.activelink,
+    },
+  }),
+);
 
 const Container = glamorous.header({
   boxSizing: 'border-box',
@@ -51,12 +46,10 @@ const Container = glamorous.header({
   padding: 20,
 });
 
-const activeIconStyle = {
+const SearchIcon = glamorous(Search)(({ theme }) => ({
   ':active': {
     fill: theme.activelink,
   },
-};
-
-const SearchIcon = glamorous(Search)(activeIconStyle);
+}));
 
 export default Header;
