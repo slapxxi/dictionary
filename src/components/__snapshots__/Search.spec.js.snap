@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders 1`] = `
-.glamor-0,
-[data-glamor-0] {
+.css-0,
+[data-css-0] {
   display: block;
   width: 100%;
   border: 0;
@@ -12,40 +12,40 @@ exports[`renders 1`] = `
   color: white;
 }
 
-.glamor-0:focus,
-[data-glamor-0]:focus {
+.css-0:focus,
+[data-css-0]:focus {
   outline: 0;
 }
 
-.glamor-0:focus::placeholder,
-[data-glamor-0]:focus::placeholder {
+.css-0:focus::placeholder,
+[data-css-0]:focus::placeholder {
   color: transparent;
 }
 
-.glamor-0::-webkit-input-placeholder,
-[data-glamor-0]::-webkit-input-placeholder {
+.css-0::-webkit-input-placeholder,
+[data-css-0]::-webkit-input-placeholder {
   color: #6D6F7f;
 }
 
-.glamor-0::-moz-placeholder,
-[data-glamor-0]::-moz-placeholder {
+.css-0::-moz-placeholder,
+[data-css-0]::-moz-placeholder {
   color: #6D6F7f;
 }
 
-.glamor-0::-ms-input-placeholder,
-[data-glamor-0]::-ms-input-placeholder {
+.css-0::-ms-input-placeholder,
+[data-css-0]::-ms-input-placeholder {
   color: #6D6F7f;
 }
 
-.glamor-0::placeholder,
-[data-glamor-0]::placeholder {
+.css-0::placeholder,
+[data-css-0]::placeholder {
   color: #6D6F7f;
 }
 
 <input
-  class="glamor-0 search"
+  class="css-0 search"
   data-test="input"
-  placeholder="Search"
+  placeholder="Enter a search query..."
   value="test"
 >
   

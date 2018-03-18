@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`does not render item when render returns undefined 1`] = `
-.glamor-0,
-[data-glamor-0] {
+.css-0,
+[data-css-0] {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -13,7 +13,7 @@ exports[`does not render item when render returns undefined 1`] = `
 }
 
 <div
-  class="glamor-0 autosuggest"
+  class="css-0 autosuggest"
 >
   <ul>
     
@@ -28,8 +28,8 @@ exports[`renders nothing if data not provided 1`] = `null`;
 exports[`renders nothing if query not provided 1`] = `null`;
 
 exports[`renders suggestions 1`] = `
-.glamor-2,
-[data-glamor-2] {
+.css-0,
+[data-css-0] {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -39,24 +39,24 @@ exports[`renders suggestions 1`] = `
   -webkit-flex: 1;
 }
 
-.glamor-0,
-[data-glamor-0] {
+.css-1,
+[data-css-1] {
   padding: 12px 0;
   text-align: center;
   font-size: 24px;
 }
 
 <div
-  class="glamor-2 autosuggest"
+  class="css-0 autosuggest"
 >
   <ul>
     <li
-      class="glamor-0"
+      class="css-1"
     >
       abide
     </li>
     <li
-      class="glamor-0"
+      class="css-1"
     >
       abysmal
     </li>

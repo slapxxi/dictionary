@@ -3,8 +3,8 @@
 exports[`renders nothing if data is empty 1`] = `null`;
 
 exports[`renders slides 1`] = `
-.glamor-0,
-[data-glamor-0] {
+.css-0,
+[data-css-0] {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -19,7 +19,7 @@ exports[`renders slides 1`] = `
 }
 
 <div
-  class="glamor-0"
+  class="css-0"
 >
   <div>
     first
