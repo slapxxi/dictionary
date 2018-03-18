@@ -26,4 +26,10 @@ const theme = {
   hiddentext: colors.comment,
 };
 
-export { colors, theme };
+const queries = {
+  phone: '@media (min-width: 400px)',
+  tablet: '@media (min-width: 660px)',
+  desktop: '@media (min-width: 960px)',
+};
+
+export { colors, theme, queries };
