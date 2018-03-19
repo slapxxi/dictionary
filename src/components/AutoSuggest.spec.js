@@ -4,8 +4,6 @@ import { render } from 'enzyme';
 import { suggest } from '../lib';
 import AutoSuggest from './AutoSuggest';
 
-const data = [{ word: 'test' }];
-
 jest.mock('../lib', () => ({
   suggest: jest.fn((...params) => {
     expect(params).toHaveLength(3);
@@ -21,7 +19,7 @@ it('renders suggestions', () => {
   const component = render(
     <AutoSuggest
       query="test"
-      data={data}
+      data={[{ word: 'test' }]}
       render={_.property('word')}
     />,
   );
